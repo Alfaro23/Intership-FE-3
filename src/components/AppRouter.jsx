@@ -3,8 +3,6 @@ import { Route, Switch, Redirect } from 'react-router-dom';
 import { CHAT_ROUTE, LOGIN_ROUTE } from "../utils/constans";
 import { privateRoutes, publicRoutes } from './routes';
 
-import { Context } from '../index';
-
 import { useSelector, useDispatch } from 'react-redux';
 
 const AppRouter = () => {

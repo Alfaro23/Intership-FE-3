@@ -5,14 +5,18 @@ export const storeSlice = createSlice({
     initialState:{
         user: {},
         isLoading: false,
+        messages: [],
     },
     reducers:{
         getUserAuth: (state, action) => {
             state.user = action.payload
-            state.isLoading = true
+            state.isLoading = action.payload
         },
+        getMessages: (state, action) => {
+            state.messages = action.payload
+        }
     }
 })
 
-export const { getUserAuth } = storeSlice.actions;
+export const { getUserAuth, getMessages } = storeSlice.actions;
 export default storeSlice.reducer;

@@ -1,21 +1,17 @@
 import { Container, Grid, Box, Button } from '@mui/material'
-import React, { useContext } from 'react'
-import { Context } from '../index';
+import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { getUserAuth } from '../store';
-
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
 const Login = () => {
 
   const user = useSelector(state => state.user.user)
   const dispatch = useDispatch();
 
-  const {auth} = useContext(Context);
-
   const login = async () => {
 
     dispatch(getUserAuth())
+    
     console.log(user);
   }
   
