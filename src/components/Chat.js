@@ -19,9 +19,6 @@ const Chat = () => {
   
   const [value, setValue] = useState("");
 
-  // const messages1 = useSelector(state => state.user.messages);
-  console.log(messages2);
-  let messages = []
   const sendMessage = async () => {
     try{
       const testData = await addDoc(collection(firestore, "messages"),{
@@ -38,16 +35,16 @@ const Chat = () => {
       console.log(err);
     }
   }
-
     
   return (
-    <Container>
+    <Container style={{width: "700px",}}>
       <Grid 
         container
         justifyContent={"center"}
         style={{
           height: window.innerHeight - 50,
           marginTop: "50px",
+          justifyContent: "flex-end"
         }}
       >
         <div style={{
@@ -56,12 +53,10 @@ const Chat = () => {
           border: "1px solid gray",
           overflowY: "auto",
         }}
-        className="textArea"
         >
           {
             messages2 ? 
               messages2.map(elem => {
-                
                 return(
                   <div key={elem.uid.stringValue} style={{
                                 margin: 10, 
@@ -70,11 +65,11 @@ const Chat = () => {
                                 width: "fit-content",
                                 padding: 5,
                               }}>
-                    <Grid container>
-                      <Avatar src={elem.photoURL.stringValue} />
+                    <Grid container alignItems="center">
+                      <Avatar style={{marginRight: "10px"}} src={elem.photoURL.stringValue} />
                       <div>{elem.displayName.stringValue}</div>
                     </Grid>
-                    <div>{elem.text.stringValue}</div>
+                    <div style={{marginTop: "10px"}}>{elem.text.stringValue}</div>
                   </div>
                 )
               })
