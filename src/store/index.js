@@ -7,7 +7,8 @@ export const storeSlice = createSlice({
         isLoading: false,
         messages: [],
         isUserReadyToStartQuiz: false,
-        userReadiness: []
+        userReadiness: [],
+        questions: [],
     },
     reducers:{
         getUserAuth: (state, action) => {
@@ -20,9 +21,12 @@ export const storeSlice = createSlice({
         getUserState: (state, action) => {
             state.isUserReadyToStartQuiz = action.payload
             state.userReadiness = action.payload
+        },
+        getQuestions: (state, action) => {
+            state.questions = action.payload
         }
     }
 })
 
-export const { getUserAuth, getMessages, getUserState } = storeSlice.actions;
+export const { getUserAuth, getMessages, getUserState, getQuestions } = storeSlice.actions;
 export default storeSlice.reducer;
