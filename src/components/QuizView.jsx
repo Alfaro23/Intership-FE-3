@@ -1,14 +1,17 @@
 import { ClassNames } from '@emotion/react';
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, Button, Grid, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuestions } from '../store';
+import QuizResult from './QuizResult';
 
 const QuizView = () => {
 
     const questions = useSelector((state) => state.user.questions)
     
     const dispatch = useDispatch();
+    const [trueAnswer, setTrueAnswer] = useState(0);
+    const [view, setView] = useState(false);
 
     useEffect(() => {
         dispatch(getQuestions())
@@ -25,6 +28,7 @@ const QuizView = () => {
                 
                 if(elemOfQuestions.correct_answer === value){
                     elem.parentNode.style.color="green";
+                    setTrueAnswer(trueAnswer + 1)
                 }
                 
             }
@@ -56,11 +60,14 @@ const QuizView = () => {
                                             ))
                                         }
                                     </form>
+                                    
                                 </div>
                             </Box>
                         </Box>
                     ))
                 }
+                <Button onClick={() => setView(true)}>View result</Button>
+                <QuizResult view={view} setView={() => setView(false)} result={trueAnswer} total={questions.length}/>
             </Box>
         </Grid>
     ) : (<div>Loading...</div>)
